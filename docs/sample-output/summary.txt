@@ -1,0 +1,18 @@
+Incident ID : 20260801-111047
+
+Host : FLARE-VM
+Severity : Critical
+Detection Method :
+Custom Python Correlation Engine
+Observed Rules:
+  - 110000
+  - 110001
+  - 110002
+  - 110003
+
+
+MITRE ATT&CK:
+  - T1490
+  - T1070.001
+Status:
+Playbook started.

@@ -1,0 +1,41 @@
+# Python
+
+__pycache__/
+
+*.py[cod]
+
+
+
+# Virtual Environments
+
+venv/
+
+.venv/
+
+
+
+# Runtime Artifacts
+
+logs/
+
+incidents/
+
+src/logs/
+
+src/incidents/
+
+
+
+# IDE
+
+.vscode/
+
+.idea/
+
+
+
+# OS
+
+.DS_Store
+
+Thumbs.db

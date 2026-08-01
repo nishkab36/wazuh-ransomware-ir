@@ -1,0 +1,97 @@
+<!-- ==========================
+     Windows Ransomware Detection Rules
+========================== -->
+
+<group name="custom_ransomware,windows,sysmon">
+
+  <!--
+    Rule ID : 110000
+    Technique : Shadow Copy Deletion
+    MITRE ATT&CK : T1490 - Inhibit System Recovery
+  -->
+
+  <rule id="110000" level="12">
+
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\vssadmin\.exe</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)delete\s+shadows</field>
+    <description>Possible ransomware behavior - Volume Shadow Copies deleted using VSSAdmin</description>
+
+    <mitre>
+      <id>T1490</id>
+    </mitre>
+
+    <group>ransomware,defense_evasion,windows,sysmon,custom_detection,ransomware_stage,</group>
+
+  </rule>
+
+  <!--
+    Rule ID : 110001
+    Technique : Backup Catalog Deletion
+    MITRE ATT&CK : T1490 - Inhibit System Recovery
+  -->
+
+  <rule id="110001" level="12">
+
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\wbadmin\.exe</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)delete\s+catalog</field>
+    <description>Possible ransomware behavior - Windows Backup Catalog deleted using WBAdmin</description>
+
+    <mitre>
+      <id>T1490</id>
+    </mitre>
+
+    <group>ransomware,defense_evasion,windows,sysmon,custom_detection,ransomware_stage,</group>
+
+  </rule>
+
+  <!--
+    Rule ID : 110002
+    Technique : Boot Configuration Modification
+    MITRE ATT&CK : T1490 - Inhibit System Recovery
+  -->
+
+  <rule id="110002" level="12">
+
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\bcdedit\.exe</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)recoveryenabled\s+no</field>
+    <description>Possible ransomware behavior - Windows Recovery disabled using BCDEdit</description>
+
+    <mitre>
+      <id>T1490</id>
+    </mitre>
+
+    <group>ransomware,defense_evasion,windows,sysmon,custom_detection,ransomware_stage,</group>
+
+  </rule>
+
+  <!--
+    Rule ID : 110003
+    Technique : Windows Event Log Clearing
+    MITRE ATT&CK : T1070.001 - Clear Windows Event Logs  
+  -->
+
+  <rule id="110003" level="12">
+
+    <if_sid>61603</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\wevtutil\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)\bcl\b</field>
+    <description>Possible defense evasion - Windows Event Log cleared using Wevtutil</description>
+
+    <mitre>
+      <id>T1070.001</id>
+    </mitre>
+
+    <group>ransomware,defense_evasion,windows,sysmon,custom_detection,ransomware_stage,</group>
+
+  </rule>
+
+</group>
+
+
+
+
+
+
