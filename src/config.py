@@ -1,8 +1,8 @@
 # Windows Endpoint
 
-WINDOWS_HOST = "192.168.213.163"
-USERNAME = "Administrator"
-PASSWORD = "Admin@123"
+WINDOWS_HOST = "<WINDOWS_IP>"
+USERNAME = "<USERNAME>"
+PASSWORD = "<PASSWORD>"
 
 
 # Correlation
